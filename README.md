@@ -18,5 +18,4 @@ Este projeto contém exemplos de implementações de conceitos importantes de Pr
 
 ## Como executar
 1. Clone o repositório.
-2. Compile o projeto com Maven.
 3. Execute a classe `Main` para ver os exemplos em execução.
