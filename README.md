@@ -1,3 +1,4 @@
+
 # OOP Interview Questions - Java Examples
 
 Este projeto contém exemplos de implementações de conceitos importantes de Programação Orientada a Objetos (OOP) em Java, abordando:
@@ -14,73 +15,59 @@ Este projeto contém exemplos de implementações de conceitos importantes de Pr
 - **`abstractexample`**: Exemplos de classes abstratas.
 - **`interfaceexample`**: Exemplos de interfaces.
 - **`singleton`**: Implementação do padrão Singleton.
-- **`polymorphism`**: Demonstrações de polimorfismo.
-- **`methodoverloading`**: Exemplos de sobrecarga de métodos.
-- **`methodoverriding`**: Exemplos de sobrescrita de métodos.
-- **`encapsulation`**: Demonstração do conceito de encapsulamento.
-- **`customexception`**: Implementação de exceções personalizadas.
-- **`lambdaexpressions`**: Uso de expressões Lambda para simplificar operações.
-- **`shallowdeepcopy`**: Comparação entre cópia superficial e cópia profunda.
-- **`threading`**: Demonstração do uso da palavra-chave `volatile` em multithreading.
 - **`main`**: Classe principal para executar os exemplos.
 
 ## Como executar
-1. Clone o repositório:
-   ```bash
-   git clone <URL_DO_REPOSITORIO>
-   ```
-2. Compile o projeto com Maven:
-   ```bash
-   mvn clean install
-   ```
-3. Execute a classe `Main` para ver os exemplos em execução:
-   ```bash
-   java -cp target/oop-interview-project-1.0.jar com.example.oop.Main
-   ```
+1. Clone o repositório.
+2. Compile o projeto com Maven.
+3. Execute a classe `Main` para ver os exemplos em execução.
 
 ## Perguntas e Respostas
 
-### 1. Qual é a diferença entre uma classe abstrata e uma interface em termos de design?
-- **Classe abstrata:** Permite métodos abstratos e concretos. Use-a quando você deseja fornecer uma base comum com algum comportamento compartilhado e estender a funcionalidade.
-  ```java
-  abstract class AbstractAnimal {
-      abstract void makeSound();
+### 1️⃣ Qual é a diferença entre uma classe abstrata e uma interface em termos de design?
+- **Classe abstrata:** Serve como um modelo base que pode incluir métodos concretos e abstratos. É usada quando queremos compartilhar parte do comportamento entre classes relacionadas.
+- **Interface:** Define apenas contratos (assinaturas de métodos). A partir do Java 8, pode ter métodos `default` e `static`. É usada para garantir que diferentes classes implementem um conjunto de funcionalidades, independentemente de estarem na mesma hierarquia.
 
-      void sleep() {
-          System.out.println("Sleeping...");
-      }
-  }
+**Exemplo:**
+```java
+abstract class Animal {
+    abstract void sound(); // Método abstrato
+    void sleep() {         // Método concreto
+        System.out.println("Sleeping...");
+    }
+}
 
-  class Dog extends AbstractAnimal {
-      @Override
-      void makeSound() {
-          System.out.println("Bark");
-      }
-  }
-  ```
-- **Interface:** Contém apenas métodos abstratos (antes do Java 8) ou métodos abstratos, métodos default e métodos estáticos (a partir do Java 8). Use-a para definir um contrato sem impor uma hierarquia rígida.
-  ```java
-  interface Walkable {
-      void walk();
-  }
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Bark");
+    }
+}
 
-  class Cat implements Walkable {
-      @Override
-      public void walk() {
-          System.out.println("Walking like a cat...");
-      }
-  }
-  ```
+interface Walkable {
+    void walk();
+}
+
+class Cat implements Walkable {
+    @Override
+    public void walk() {
+        System.out.println("Cat is walking");
+    }
+}
+```
 
 ---
 
-### 2. Explique o conceito de polimorfismo com um exemplo em Java.
-Polimorfismo permite que objetos de diferentes classes sejam tratados de forma uniforme através de uma interface ou classe base.
+### 2️⃣ Explique o conceito de polimorfismo com um exemplo em Java.
+- **Polimorfismo:** É a habilidade de um objeto se comportar de diferentes formas, dependendo do contexto. Ele pode ser de dois tipos:
+  - **Polimorfismo em tempo de compilação (sobrecarga).**
+  - **Polimorfismo em tempo de execução (substituição).**
 
+**Exemplo:**
 ```java
 class Animal {
     void sound() {
-        System.out.println("Some sound");
+        System.out.println("Generic sound");
     }
 }
 
@@ -97,35 +84,100 @@ class Cat extends Animal {
         System.out.println("Meow");
     }
 }
+
+public class Main {
+    public static void main(String[] args) {
+        Animal animal1 = new Dog();
+        Animal animal2 = new Cat();
+        animal1.sound(); // Output: Bark
+        animal2.sound(); // Output: Meow
+    }
+}
 ```
 
 ---
 
-### 3. Como o Java consegue sobrecarga e substituição de método?
-- **Sobrecarga (Overloading):** Permite criar vários métodos com o mesmo nome, mas assinaturas diferentes.
-- **Substituição (Overriding):** Permite que uma classe filha forneça sua própria implementação para um método da classe pai.
+### 3️⃣ Como o Java consegue sobrecarga e substituição de método?
+- **Sobrecarga:** Permite definir métodos com o mesmo nome, mas assinaturas diferentes (diferente número ou tipo de argumentos).
+- **Substituição:** Uma classe filha redefine um método da classe pai, permitindo comportamento específico.
 
----
-
-### 4. Qual é o propósito da palavra-chave `instanceof` em Java?
-`instanceof` verifica se um objeto é uma instância de uma classe específica ou de uma classe que implementa/estende a classe/interface.
-
----
-
-### 5. Qual é a diferença entre cópia superficial e cópia profunda?
-- **Cópia superficial (Shallow Copy):** Copia os campos primitivos e referências de objetos, mas não os objetos referenciados.
-- **Cópia profunda (Deep Copy):** Copia completamente os campos e objetos referenciados, criando novas instâncias dos objetos.
-
----
-
-### 6. Explique o conceito de encapsulamento com um exemplo.
-Encapsulamento é o conceito de esconder detalhes internos e expor apenas o que é necessário.
-
+**Exemplo:**
 ```java
-class Person {
-    private String name;
+class Animal {
+    // Sobrecarga
+    void sound() {
+        System.out.println("Generic sound");
+    }
 
-    public String getName() {
+    void sound(String type) {
+        System.out.println("Sound of " + type);
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void sound() { // Substituição
+        System.out.println("Bark");
+    }
+}
+```
+
+---
+
+### 4️⃣ Qual é o propósito da palavra-chave `instanceof` em Java?
+- **`instanceof`:** Verifica se um objeto pertence a uma classe específica ou implementa uma interface. É usado para evitar `ClassCastException` ao realizar conversões.
+
+**Exemplo:**
+```java
+Animal animal = new Dog();
+if (animal instanceof Dog) {
+    System.out.println("Animal is a Dog");
+}
+```
+
+---
+
+### 5️⃣ Qual é a diferença entre cópia superficial e cópia profunda?
+- **Cópia superficial:** Copia apenas referências para os objetos internos, não os objetos em si.
+- **Cópia profunda:** Cria novas instâncias dos objetos referenciados, garantindo independência.
+
+**Exemplo:**
+```java
+class Address {
+    String city;
+}
+
+class Animal implements Cloneable {
+    String name;
+    Address address;
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        // Cópia superficial
+        return super.clone();
+    }
+
+    protected Animal deepClone() throws CloneNotSupportedException {
+        // Cópia profunda
+        Animal cloned = (Animal) super.clone();
+        cloned.address = new Address();
+        cloned.address.city = this.address.city;
+        return cloned;
+    }
+}
+```
+
+---
+
+### 6️⃣ Explique o conceito de encapsulamento com um exemplo.
+- **Encapsulamento:** É a prática de esconder detalhes internos de uma classe, expondo apenas os métodos necessários. Ele protege o estado interno contra acessos ou modificações não autorizados.
+
+**Exemplo:**
+```java
+class Animal {
+    private String name; // Estado oculto
+
+    public String getName() { // Acesso controlado
         return name;
     }
 
@@ -137,18 +189,19 @@ class Person {
 
 ---
 
-### 7. O que é uma classe singleton e como você a implementa em Java?
-Singleton garante que apenas uma instância de uma classe seja criada.
+### 7️⃣ O que é uma classe singleton e como você a implementa em Java?
+- **Singleton:** Garante que apenas uma instância de uma classe seja criada em toda a aplicação. É usado para recursos compartilhados, como gerenciadores de conexão.
 
+**Exemplo:**
 ```java
-class Singleton {
-    private static Singleton instance;
+class AnimalManager {
+    private static AnimalManager instance;
 
-    private Singleton() {}
+    private AnimalManager() {} // Construtor privado
 
-    public static Singleton getInstance() {
+    public static AnimalManager getInstance() {
         if (instance == null) {
-            instance = new Singleton();
+            instance = new AnimalManager();
         }
         return instance;
     }
@@ -157,29 +210,61 @@ class Singleton {
 
 ---
 
-### 8. Qual é o significado da palavra-chave `volatile` em multithreading?
-`volatile` garante visibilidade de mudanças em uma variável entre threads. Sem isso, as threads podem usar valores armazenados em cache.
+### 8️⃣ Qual é o significado da palavra-chave `volatile` em multithreading?
+- **`volatile`:** Garante que a variável seja lida diretamente da memória principal, não de caches de threads. Isso assegura visibilidade entre threads.
 
----
-
-### 9. Como você lida com exceções em Java usando exceções personalizadas?
-Crie uma classe que estenda `Exception` ou `RuntimeException`.
-
+**Exemplo:**
 ```java
-class CustomException extends Exception {
-    public CustomException(String message) {
-        super(message);
+class AnimalCounter {
+    private volatile int count;
+
+    public void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
 ```
 
 ---
 
-### 10. O que são expressões Lambda em Java e como elas melhoram a legibilidade do código?
-Expressões Lambda permitem escrever funções anônimas de maneira concisa. Elas simplificam o uso de interfaces funcionais.
+### 9️⃣ Como você lida com exceções em Java usando exceções personalizadas?
+- **Exceções personalizadas:** São usadas para criar erros específicos do domínio ou da aplicação, melhorando a clareza e o tratamento de erros.
 
+**Exemplo:**
 ```java
-List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
-numbers.forEach(n -> System.out.println(n));
+class AnimalException extends Exception {
+    public AnimalException(String message) {
+        super(message);
+    }
+}
+
+class AnimalService {
+    void checkSound(String sound) throws AnimalException {
+        if (sound == null || sound.isEmpty()) {
+            throw new AnimalException("Sound is invalid");
+        }
+        System.out.println("Sound: " + sound);
+    }
+}
 ```
 
+---
+
+### 🔟 O que são expressões Lambda em Java e como elas melhoram a legibilidade do código?
+- **Expressões Lambda:** Introduzidas no Java 8, permitem passar comportamentos como argumentos para métodos de forma concisa. Elas reduzem a verbosidade no uso de interfaces funcionais.
+
+**Exemplo:**
+```java
+import java.util.Arrays;
+import java.util.List;
+
+class Main {
+    public static void main(String[] args) {
+        List<Animal> animals = Arrays.asList(new Dog(), new Cat());
+        animals.forEach(animal -> animal.sound());
+    }
+}
+```
