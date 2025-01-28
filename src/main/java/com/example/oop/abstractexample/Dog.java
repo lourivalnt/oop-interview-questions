@@ -1,4 +1,4 @@
-package src.main.java.com.example.oop.abstractexample;
+package com.example.oop.abstractexample;
 
 public class Dog extends AbstractAnimal {
 

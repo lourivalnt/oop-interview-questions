@@ -1,4 +1,5 @@
-package src.main.java.com.example.oop.interfaceexample;
+package com.example.oop.interfaceexample;
 
 public interface InterfaceWalkable {
+    void walk();
 }
