@@ -25,8 +25,8 @@ Este projeto contém exemplos de implementações de conceitos importantes de Pr
 ## Perguntas e Respostas
 
 ### 1️⃣ Qual é a diferença entre uma classe abstrata e uma interface em termos de design?
-- **Classe abstrata:** Serve como um modelo base que pode incluir métodos concretos e abstratos. É usada quando queremos compartilhar parte do comportamento entre classes relacionadas.
-- **Interface:** Define apenas contratos (assinaturas de métodos). A partir do Java 8, pode ter métodos `default` e `static`. É usada para garantir que diferentes classes implementem um conjunto de funcionalidades, independentemente de estarem na mesma hierarquia.
+- **Classe abstrata:** Serve como um modelo base que pode incluir métodos concretos e abstratos. É usada quando queremos compartilhar parte do comportamento entre classes relacionadas. É estendida com a palavra-chave extends, suporta herança única (uma classe só pode estender uma classe abstrata).
+- **Interface:** Define apenas contratos (assinaturas de métodos). A partir do Java 8, pode ter métodos `default` e `static`. É usada para garantir que diferentes classes implementem um conjunto de funcionalidades, independentemente de estarem na mesma hierarquia.  implementada com a palavra-chave implements, suporta múltiplas implementações (uma classe pode implementar várias interfaces).
 
 **Exemplo:**
 ```java
