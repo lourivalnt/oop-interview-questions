@@ -1,30 +1,11 @@
 package com.example.oop.lambdaexpressions;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.function.Consumer;
 
-interface Animal {
-    void sound();
-}
-
-class Dog implements Animal {
-    @Override
-    public void sound() {
-        System.out.println("Dog barks");
-    }
-}
-
-class Cat implements Animal {
-    @Override
-    public void sound() {
-        System.out.println("Cat meows");
-    }
-}
-
-class Main {
+class LambdaExample {
     public static void main(String[] args) {
-        List<Animal> animals = Arrays.asList(new Dog(), new Cat());
-//        animals.forEach(animal -> animal.sound());
-        animals.forEach(Animal::sound);
+        Consumer<String> animalSound = animal -> System.out.println(animal + " makes a sound");
+        animalSound.accept("Dog");
+        animalSound.accept("Cat");
     }
 }
