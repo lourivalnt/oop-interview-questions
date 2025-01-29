@@ -1,22 +1,20 @@
-import com.example.oop.abstractexample.AbstractAnimal;
 import com.example.oop.abstractexample.Dog;
-import com.example.oop.interfaceexample.InterfaceWalkable;
-import com.example.oop.interfaceexample.RunnableDog;
-import com.example.oop.singleton.SingletonExample;
+import com.example.oop.interfaceexample.Cat;
+import com.example.oop.singleton.AnimalManager;
 
 public class Main {
     public static void main(String[] args) {
-        // Exemplo de Classe Abstrata
-        AbstractAnimal dog = new Dog("Buddy");
+        // Abstraction
+        Dog dog = new Dog();
         dog.sound();
         dog.sleep();
 
-        // Exemplo de Interface
-        InterfaceWalkable walkableDog = new RunnableDog();
-        walkableDog.walk();
+        // Interface
+        Cat cat = new Cat();
+        cat.walk();
 
-        // Exemplo de Singleton
-        SingletonExample singleton = SingletonExample.getInstance();
-        singleton.showMessage();
+        // Singleton
+        AnimalManager manager = AnimalManager.getInstance();
+        System.out.println("Singleton instance: " + manager);
     }
 }

@@ -1,9 +1,8 @@
 package com.example.oop.abstractexample;
 
-public class Dog extends Animal {
-
+public class Cat extends Animal {
     @Override
     public void sound() {
-        System.out.println(" says: Bark!");
+        System.out.println("Meow");
     }
 }
